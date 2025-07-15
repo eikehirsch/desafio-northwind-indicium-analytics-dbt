@@ -1,0 +1,12 @@
+sources:
+  - name: erp
+    database: fea25_05
+    schema: dbt_eikehirsch_raw
+    tables:
+      - name: categories
+        description: Lists and describes categories to which the products belong
+        columns:
+          - name: category_id
+            data_tests:
+              - unique
+              - not_null
