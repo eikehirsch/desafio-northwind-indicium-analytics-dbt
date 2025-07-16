@@ -1,12 +1,83 @@
 sources:
   - name: erp
+    description: This is the raw database of Northwind hosted on Snowflake.
     database: fea25_05
     schema: dbt_eikehirsch_raw
     tables:
       - name: categories
-        description: Lists and describes categories to which the products belong
+        description: Lists and describes informations about categories to which the products belong.
         columns:
           - name: category_id
+            data_tests:
+              - unique
+              - not_null
+      - name: customers
+        description: List and describes informations about the customers associated with the orders.
+        columns:
+          - name: customer_id
+            data_tests:
+              - unique
+              - not_null
+      - name: employees
+        description: Lists and describes informations about the employees of Northwind.
+        columns:
+          - name: employee_id
+            data_tests:
+              - unique
+              - not_null
+      - name: employee_territories
+        description: Lists the correlation between an employee and the territories in which he/she is alocated.
+        data_tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - employee_id
+                - territory_id
+      - name: orders
+        description: Lists the orders made by the customers.
+        columns:
+          - name: order_id
+            data_tests:
+              - unique
+              - not_null
+      - name: order_details
+        description: List and describes the details about the items of each order made by the customers.
+        data_tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - order_id
+                - product_id
+      - name: products
+        description: Lists and describes informations about the products associated with the orders_details.
+        columns:
+          - name: product_id
+            data_tests:
+              - unique
+              - not_null
+      - name: regions
+        description: Lists and describes informations about the regions.
+        columns:
+          - name: region_id
+            data_tests:
+              - unique
+              - not_null
+      - name: shippers
+        description: Lists and describes informations about the shippers associated with the order.
+        columns:
+          - name: shipper_id
+            data_tests:
+              - unique
+              - not_null
+      - name: suppliers
+        description: Lists and describes informations about the suppliers of the products.
+        columns:
+          - name: supplier_id
+            data_tests:
+              - unique
+              - not_null
+      - name: territories
+        description: Lists and describes informations about the territories of a region.
+        columns:
+          - name: territory_id
             data_tests:
               - unique
               - not_null
