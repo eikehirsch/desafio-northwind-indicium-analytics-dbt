@@ -41,4 +41,4 @@ WITH
         from joined
     )
 
-select * from joined
+select * from cleaned
