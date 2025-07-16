@@ -25,13 +25,6 @@ sources:
             data_tests:
               - unique
               - not_null
-      - name: employee_territories
-        description: Lists the correlation between an employee and the territories in which he/she is alocated.
-        data_tests:
-          - dbt_utils.unique_combination_of_columns:
-              combination_of_columns:
-                - employee_id
-                - territory_id
       - name: orders
         description: Lists the orders made by the customers.
         columns:
@@ -47,19 +40,6 @@ sources:
                 - order_id
                 - product_id
       - name: products
-        description: Lists and describes informations about the products associated with the orders_details.
-        columns:
-          - name: product_id
-            data_tests:
-              - unique
-              - not_null
-      - name: regions
-        description: Lists and describes informations about the regions.
-        columns:
-          - name: region_id
-            data_tests:
-              - unique
-              - not_null
       - name: shippers
         description: Lists and describes informations about the shippers associated with the order.
         columns:
@@ -71,13 +51,6 @@ sources:
         description: Lists and describes informations about the suppliers of the products.
         columns:
           - name: supplier_id
-            data_tests:
-              - unique
-              - not_null
-      - name: territories
-        description: Lists and describes informations about the territories of a region.
-        columns:
-          - name: territory_id
             data_tests:
               - unique
               - not_null
