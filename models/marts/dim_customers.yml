@@ -1,0 +1,32 @@
+models:
+  - name: dim_customers
+    description: >
+      A dimension table that lists and contains information about company customers, including
+      details such as the name and address of the customer company and the name of the person representing the customer company.
+    columns:
+      - name: customer_pk
+        description: Unique identifier for each customer.
+        tests:
+          - unique
+          - not_null
+
+      - name: company_name
+        description: Name of the customer company.
+
+      - name: contact_name
+        description: Name of the person representing the customer company.
+
+      - name: contact_title
+        description: Job title of the person representing the customer company.
+
+      - name: company_address
+        description: Addres of the customer company.
+      
+      - name: company_city
+        description: City where the customer company is located.
+
+      - name: company_region
+        description: Region where the customer company is located.
+
+      - name: company_country
+        description: Country where the customer company is located.
