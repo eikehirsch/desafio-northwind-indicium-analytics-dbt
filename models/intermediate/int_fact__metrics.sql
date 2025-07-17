@@ -40,6 +40,10 @@ WITH
            , order_date
            , ship_date
            , required_delivery_date
+           , CASE 
+                WHEN ship_date > required_delivery_date THEN 'Late'
+                ELSE 'On time'
+             END AS shipping_status
            , unit_price
            , quantity
            , discount
