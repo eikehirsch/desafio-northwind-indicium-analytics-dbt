@@ -22,7 +22,10 @@ WITH
             , products.unit_price
             , products.units_in_stock
             , products.units_on_order
-            , products.is_discontinued
+            , CASE
+                WHEN products.is_discontinued = 0 THEN 'No'
+                ELSE 'Yes'
+              END AS is_discontinued
             , suppliers.supplier_name
             , suppliers.supplier_address
             , suppliers.supplier_city
