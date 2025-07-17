@@ -1,0 +1,54 @@
+models:
+  - name: dim_products
+    description: >
+      A dimension table that lists and contains information about the products, including 
+      details such as product name, price and units in stock. This dimension includes a left join with categories
+      and suppliers to provide more features about each product.
+    columns:
+      - name: product_pk
+        description: Unique identifier for each product.
+        tests:
+          - unique
+          - not_null
+      
+      - name: product_name
+        description: The name of the product.
+
+      - name: quantity_per_unit
+        description: The amount of the product per unit.
+
+      - name: unit_price
+        description: The price of the product per unit.
+
+      - name: units_in_stock
+        description: The amount of units of the product in stock.
+
+      - name: units_on_order
+        description: The amount of units of the product on orders.
+
+      - name: is_discontinued
+        description: Indicates if the product is no longer on sale.
+
+      - name: supplier_name
+        description: The supplier name of the product.
+
+      - name: supplier_address
+        description: The address in which the supplier of the product is located.
+      
+      - name: supplier_city
+        description: The city where the supplier of the product is located.
+
+      - name: supplier_region
+        description: The region where the supplier of the product is located.
+
+      - name: supplier_country
+        description: The country where the supplier of the product is located.
+
+      - name: supplier_phone
+        description: The phone number of the supplier of the product.
+      
+      - name: category_name
+        description: The category name of the product.
+
+      - name: category_description
+        description: The category description of the product.
