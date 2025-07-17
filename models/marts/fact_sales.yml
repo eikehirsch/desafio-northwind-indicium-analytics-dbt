@@ -48,6 +48,12 @@ models:
 
       - name: required_delivery_date
         description: The date when the order is expected to be delivered.
+
+      - name: shipping_status
+        description: Indicates whether the order was shipped on time or late.
+        tests:
+          - accepted_values:
+              values: ['Late', 'On time']
       
       - name: unit_price
         description: The unit price of the product.
