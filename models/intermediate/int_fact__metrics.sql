@@ -8,6 +8,7 @@ with
         select *
         from {{ ref('stg_erp__orders') }}
     )
+    -- Joining tables
     , joined as (
         select 
             order_details.order_item_sk
@@ -30,6 +31,7 @@ with
         from order_details
         inner join orders on order_details.order_fk = orders.order_pk
     )
+    -- Enrichment and treatment of nulls
     , metrics as (
         select 
            order_item_sk
@@ -60,7 +62,7 @@ with
            , recipient_name
            , recipient_city
            , case
-                when recipient_region IS NULL then 'N/A'
+                when recipient_region is null then 'N/A'
                 else recipient_region
              end as recipient_region
            , recipient_country 

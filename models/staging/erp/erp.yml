@@ -15,7 +15,7 @@ sources:
               - not_null
       - name: customers
         description: >
-          List and describes informations, such as name, country and and contact, about the customers 
+          List and describes informations, such as name, country and contact, about the customers 
           associated with the orders.
         columns:
           - name: customer_id
@@ -50,7 +50,7 @@ sources:
                 - order_id
                 - product_id
       - name: products
-        description: List and describes informations, such as units in stock and name, about the products.
+        description: List and describes informations, such as units in stock, unit price and name, about the products.
         columns:
           - name: product_id
             data_tests:

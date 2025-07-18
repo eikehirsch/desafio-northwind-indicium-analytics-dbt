@@ -14,7 +14,7 @@ with
             , company_address
             , company_city
             , case 
-                when company_region IS NULL then 'N/A'
+                when company_region is null then 'N/A'
                 else company_region
               end as company_region
             , company_country
