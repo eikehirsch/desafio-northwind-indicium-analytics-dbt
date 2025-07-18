@@ -1,20 +1,20 @@
-WITH 
+with 
     --Importing model from staging
-    categories AS (
+    categories as (
         select * 
         from {{ ref('stg_erp__categories') }}
     )
     --Importing model from intermediate
-    , suppliers AS (
+    , suppliers as (
         select *
         from {{ ref('int_suppliers__cleaned') }}
     )
-    , products AS (
+    , products as (
         select *
         from {{ ref('stg_erp__products') }}
     )
     -- Joining tables
-    , joined AS (
+    , joined as (
         select 
             products.product_pk
             , products.product_name
@@ -22,10 +22,10 @@ WITH
             , products.unit_price
             , products.units_in_stock
             , products.units_on_order
-            , CASE
-                WHEN products.is_discontinued = 0 THEN 'No'
-                ELSE 'Yes'
-              END AS is_discontinued
+            , case
+                when products.is_discontinued = 0 then 'Não'
+                else 'Sim'
+              end as is_discontinued
             , suppliers.supplier_name
             , suppliers.supplier_address
             , suppliers.supplier_city
@@ -35,8 +35,8 @@ WITH
             , categories.category_name
             , categories.category_description
         from products
-        left join categories ON products.category_fk = categories.category_pk
-        left join suppliers ON products.supplier_fk = supplier_pk
+        left join categories on products.category_fk = categories.category_pk
+        left join suppliers on products.supplier_fk = supplier_pk
     )
     
     select * from joined

@@ -1,5 +1,5 @@
-WITH
-    int_employees AS (
+with
+    int_employees as (
         select * 
         from {{ ref('int_employees__self_join') }}
     )

@@ -2,12 +2,13 @@ models:
   - name: fact_sales
     description: > 
       This is a fact table that lists and stores information about orders at the order item level of granularity. 
-      The table includes foreign keys to be used for joining with dimension tables, date fields (such as order date), 
-      metrics (such as freight per item, gross revenue, and net revenue), and descriptive fields such as delivery vendor 
+      The table includes foreign keys to be used for joining with dimension tables, date columns (such as order date), 
+      metrics (such as freight per item, gross revenue, and net revenue), and descriptive columns such as delivery vendor 
       information. This fact table is derived from a join between the orders and order_details tables.
     columns:
       - name: order_item_sk
-        description: Unique identifier for each combination of order and order item.
+        description: >
+          A surrogate unique identifier for each combination of order and order item that was created with dbt.utils.
         tests:
           - unique
           - not_null
@@ -50,10 +51,12 @@ models:
         description: The date when the order is expected to be delivered.
 
       - name: shipping_status
-        description: Indicates whether the order was shipped on time or late.
+        description: >
+          Indicates whether the order was shipped on time or late that is calculated checking 
+          if the ship_date is later then the required_delivery_date.
         tests:
           - accepted_values:
-              values: ['Late', 'On time']
+              values: ['Atrasado', 'No prazo']
       
       - name: unit_price
         description: The unit price of the product.
@@ -68,16 +71,20 @@ models:
         description: Total amount before discount for the order item (unit price * quantity).
 
       - name: net_total
-        description: Total amount after discount for the order item.
+        description: >
+          Total amount after discount for the order item which is calculated by multiplying 
+          the discount to the gross total .
 
       - name: freight_allocated
-        description: Freight cost allocated to the order item based on item count.
+        description: >
+          Freight allocated per item, calculated by dividing the total freight amount by the 
+          total quantity of items in the order.
 
       - name: had_discount
         description: Indicates whether a discount was applied to the item.
 
       - name: order_number
-        description: Human-readable identifier of the order.
+        description: Human-readable identifier of the order that comes from the orders table.
 
       - name: recipient_name
         description: Name of the person or company receiving the order.

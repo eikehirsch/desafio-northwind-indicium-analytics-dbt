@@ -6,9 +6,9 @@ with
 
 renamed as (
     select
-        CAST(shipper_id AS INT) AS shipper_pk
-        , CAST(company_name AS VARCHAR) AS shipper_name
-        , CAST(phone AS VARCHAR) AS shipper_phone
+        cast(shipper_id as int) as shipper_pk
+        , cast(company_name as varchar) as shipper_name
+        , cast(phone as varchar) as shipper_phone
     from source_shippers
 )
 

@@ -1,20 +1,20 @@
-WITH 
+with 
     --Importing model from staging
-    suppliers AS (
+    suppliers as (
         select *
         from {{ ref('stg_erp__suppliers') }}
     ),
     -- Transformation with treatment of nulls
-    suppliers_cleaned AS (
+    suppliers_cleaned as (
         select 
             supplier_pk
             , supplier_name
             , supplier_address
             , supplier_city
-            , CASE 
-                WHEN supplier_region IS NULL THEN 'N/A'
-                ELSE supplier_region
-              END AS supplier_region
+            , case 
+                when supplier_region IS NULL then 'N/A'
+                else supplier_region
+              end as supplier_region
             , supplier_country
             , supplier_phone
         from suppliers

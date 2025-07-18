@@ -20,7 +20,7 @@ models:
         description: Job title of the person representing the customer company.
 
       - name: company_address
-        description: Addres of the customer company.
+        description: Address of the customer company.
       
       - name: company_city
         description: City where the customer company is located.

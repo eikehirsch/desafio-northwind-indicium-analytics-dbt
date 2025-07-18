@@ -30,7 +30,7 @@ models:
         description: Indicates if the product is no longer on sale.
         tests:
           - accepted_values:
-                values: ['Yes', 'No']
+                values: ['Sim', 'Não']
 
       - name: supplier_name
         description: The supplier name of the product.
