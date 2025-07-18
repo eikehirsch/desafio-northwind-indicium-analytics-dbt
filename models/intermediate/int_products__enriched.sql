@@ -1,10 +1,9 @@
 with 
-    --Importing model from staging
+    --Importing models from staging
     categories as (
         select * 
         from {{ ref('stg_erp__categories') }}
     )
-    --Importing model from intermediate
     , suppliers as (
         select *
         from {{ ref('int_suppliers__cleaned') }}
@@ -22,10 +21,7 @@ with
             , products.unit_price
             , products.units_in_stock
             , products.units_on_order
-            , case
-                when products.is_discontinued = 0 then 'Não'
-                else 'Sim'
-              end as is_discontinued
+            , products.is_discontinued
             , suppliers.supplier_name
             , suppliers.supplier_address
             , suppliers.supplier_city
@@ -38,6 +34,28 @@ with
         left join categories on products.category_fk = categories.category_pk
         left join suppliers on products.supplier_fk = supplier_pk
     )
-    
-    select * from joined
+    -- Table enrichment
+    , enriched as (
+        select
+             product_pk
+            , product_name
+            , quantity_per_unit
+            , unit_price
+            , units_in_stock
+            , units_on_order
+            , case
+                when is_discontinued = 0 then 'Não'
+                else 'Sim'
+              end as is_discontinued
+            , supplier_name
+            , supplier_address
+            , supplier_city
+            , supplier_region
+            , supplier_country
+            , supplier_phone
+            , category_name
+            , category_description
+        from joined
+    )
+    select * from enriched
    

@@ -5,14 +5,14 @@ with
         from {{ ref('stg_erp__suppliers') }}
     ),
     -- Transformation with treatment of nulls
-    suppliers_cleaned as (
+    cleaned as (
         select 
             supplier_pk
             , supplier_name
             , supplier_address
             , supplier_city
             , case 
-                when supplier_region IS NULL then 'N/A'
+                when supplier_region is null then 'N/A'
                 else supplier_region
               end as supplier_region
             , supplier_country
@@ -20,4 +20,4 @@ with
         from suppliers
     )
 
-select * from suppliers_cleaned
+select * from cleaned

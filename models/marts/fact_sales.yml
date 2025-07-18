@@ -8,7 +8,7 @@ models:
     columns:
       - name: order_item_sk
         description: >
-          A surrogate unique identifier for each combination of order and order item that was created with dbt.utils.
+          A surrogated unique identifier for each combination of order and order item that was created with dbt.utils.
         tests:
           - unique
           - not_null

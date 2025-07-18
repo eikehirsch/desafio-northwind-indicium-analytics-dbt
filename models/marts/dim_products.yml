@@ -1,9 +1,9 @@
 models:
   - name: dim_products
     description: >
-      A dimension table that lists and contains information about the products, including 
-      details such as product name, price and units in stock. This dimension includes a left join with categories
-      and suppliers to provide more features about each product.
+      A dimension table that lists and contains information about the products, such as product name, 
+      price and units in stock. This dimension includes a left join with categories and suppliers to 
+      provide more details about each product.
     columns:
       - name: product_pk
         description: Unique identifier for each product.
@@ -27,28 +27,28 @@ models:
         description: The amount of units of the product on orders.
 
       - name: is_discontinued
-        description: Indicates if the product is no longer on sale.
+        description: Indicates if the product is no longer on sale based on the discontinued column.
         tests:
           - accepted_values:
                 values: ['Sim', 'Não']
 
       - name: supplier_name
-        description: The supplier name of the product.
+        description: The supplier company name of the product.
 
       - name: supplier_address
-        description: The address in which the supplier of the product is located.
+        description: The address in which the supplier company of the product is located.
       
       - name: supplier_city
-        description: The city where the supplier of the product is located.
+        description: The city where the supplier company of the product is located.
 
       - name: supplier_region
-        description: The region where the supplier of the product is located.
+        description: The region where the supplier company of the product is located.
 
       - name: supplier_country
-        description: The country where the supplier of the product is located.
+        description: The country where the supplier company of the product is located.
 
       - name: supplier_phone
-        description: The phone number of the supplier of the product.
+        description: The phone number of the supplier company of the product.
       
       - name: category_name
         description: The category name of the product.
