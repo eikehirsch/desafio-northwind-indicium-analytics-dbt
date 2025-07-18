@@ -1,5 +1,5 @@
 WITH
-    int_customers AS (
+    int_customers as (
         select *
         from {{ ref('int_customers__cleaned') }}
     )

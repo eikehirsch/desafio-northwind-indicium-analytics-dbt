@@ -1,5 +1,5 @@
-WITH 
-    stg_shippers AS (
+with 
+    stg_shippers as (
         select * 
         from {{ ref('stg_erp__shippers') }}
     )

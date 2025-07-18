@@ -6,9 +6,9 @@ with
 
 renamed as (
     select
-        CAST(category_id AS INT) AS category_pk
-        , CAST(category_name AS VARCHAR) AS category_name
-        , CAST(description AS VARCHAR) AS category_description
+        cast(category_id as int) as category_pk
+        , cast(category_name as varchar) as category_name
+        , cast(description as varchar) as category_description
     from source_categories
 )
 

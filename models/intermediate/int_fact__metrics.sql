@@ -1,14 +1,14 @@
-WITH
+with
     --Importing models from staging
-    order_details AS (
+    order_details as (
         select *
         from {{ ref('stg_erp__order_details') }}
     )
-    , orders AS (
+    , orders as (
         select *
         from {{ ref('stg_erp__orders') }}
     )
-    , joined AS (
+    , joined as (
         select 
             order_details.order_item_sk
             , order_details.product_fk
@@ -28,9 +28,9 @@ WITH
             , orders.recipient_region
             , orders.recipient_country
         from order_details
-        inner join orders ON order_details.order_fk = orders.order_pk
+        inner join orders on order_details.order_fk = orders.order_pk
     )
-    , metrics AS (
+    , metrics as (
         select 
            order_item_sk
            , product_fk
@@ -40,29 +40,29 @@ WITH
            , order_date
            , ship_date
            , required_delivery_date
-           , CASE 
-                WHEN ship_date > required_delivery_date THEN 'Late'
-                ELSE 'On time'
-             END AS shipping_status
+           , case 
+                when ship_date > required_delivery_date then 'Atrasado'
+                else 'No prazo'
+             end as shipping_status
            , unit_price
            , quantity
            , discount
            , unit_price * quantity as gross_total
            , unit_price * quantity * (1 - discount) as net_total
-           , CAST(
+           , cast(
                 (freight / count(*) over (partition by order_number)) 
-             AS numeric(18,2)) as freight_allocated
-           , CASE 
-                WHEN discount > 0 THEN 'Yes'
-                ELSE 'No'
-             END AS had_discount
+             as numeric(18,2)) as freight_allocated
+           , case 
+                when discount > 0 then 'Sim'
+                else 'Não'
+             end as had_discount
            , order_number
            , recipient_name
            , recipient_city
-           , CASE
-                WHEN recipient_region IS NULL THEN 'N/A'
-                ELSE recipient_region
-             END AS recipient_region
+           , case
+                when recipient_region IS NULL then 'N/A'
+                else recipient_region
+             end as recipient_region
            , recipient_country 
         from joined
     )

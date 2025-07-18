@@ -1,5 +1,5 @@
-WITH
-    int_products AS (
+with
+    int_products as (
         select *
         from {{ ref('int_products__enriched') }}
     )

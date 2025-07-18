@@ -6,19 +6,19 @@ with
 
 renamed as (
     select
-        CAST(order_id AS INT) AS order_pk
-        , CAST(customer_id AS VARCHAR) AS customer_fk
-        , CAST(employee_id AS INT) AS employee_fk
-        , CAST(ship_via AS INT) AS shipper_fk
-        , CAST(order_id AS INT) AS order_number
-        , CAST(order_date AS DATE) AS order_date
-        , CAST(shipped_date AS DATE) AS ship_date
-        , CAST(required_date AS DATE) AS required_delivery_date
-        , CAST(freight AS NUMERIC) AS freight
-        , CAST(ship_name AS VARCHAR) AS recipient_name
-        , CAST(ship_city AS VARCHAR) AS recipient_city
-        , CAST(ship_region AS VARCHAR) AS recipient_region
-        , CAST(ship_country AS VARCHAR) AS recipient_country
+        cast(order_id as int) as order_pk
+        , cast(customer_id as varchar) as customer_fk
+        , cast(employee_id as int) as employee_fk
+        , cast(ship_via as int) as shipper_fk
+        , cast(order_id as int) as order_number
+        , cast(order_date as date) as order_date
+        , cast(shipped_date as date) as ship_date
+        , cast(required_date as date) as required_delivery_date
+        , cast(freight as numeric) as freight
+        , cast(ship_name as varchar) as recipient_name
+        , cast(ship_city as varchar) as recipient_city
+        , cast(ship_region as varchar) as recipient_region
+        , cast(ship_country as varchar) as recipient_country
     from source_orders
 )
 

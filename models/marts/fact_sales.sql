@@ -1,5 +1,5 @@
-WITH
-    int_fact AS (
+with
+    int_fact as (
         select *
         from {{ ref('int_fact__metrics') }}
     )
