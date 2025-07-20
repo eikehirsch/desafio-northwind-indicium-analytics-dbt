@@ -1,9 +1,9 @@
 models:
   - name: dim_employees
     description: >
-      A dimension table that lists and contains information about company employees, including personal and professional 
-      details such as name, manager name, hire date, and location. This dimension includes a self-join to provide 
-      the name of each employee's direct manager.
+      A dimension table that contains information about Northwind Traders employees, including 
+      personal and professional details such as name, manager name, hire date, and location. This 
+      dimension includes a self-join to provide the name of each employee’s direct manager.
     columns:
       - name: employee_pk
         description: Unique identifier for each employee.

@@ -1,13 +1,16 @@
 sources:
   - name: erp
-    description: This is the raw database of Northwind Traders hosted on Snowflake.
+    description: >
+      This is the raw data table, hosted in Snowflake, from the company Northwind Traders. 
+      The data refers to sales orders from the supermarket sector, covering a wide variety of product types, 
+      with customers distributed across several countries.
     database: fea25_05
     schema: dbt_eikehirsch_raw
     tables:
       - name: categories
         description: >
-          Lists and describes informations, such as name and description, about the categories 
-          to which the products belong.
+          Lists and describes informations, such as name and description, of the categories to which the products 
+          belong.
         columns:
           - name: category_id
             data_tests:
@@ -15,8 +18,8 @@ sources:
               - not_null
       - name: customers
         description: >
-          List and describes informations, such as name, country and contact, about the customers 
-          associated with the orders.
+          List and describes informations, such as name, country, contact and address, of the customers 
+          companies associated with the orders.
         columns:
           - name: customer_id
             data_tests:
@@ -24,8 +27,8 @@ sources:
               - not_null
       - name: employees
         description: >
-          Lists and describes informations, such as name, birth_date and city, about the employees of 
-          Northwind.
+          Lists and describes informations, such as name, birth_date, hire_date and city, of the employees of 
+          Northwind Traders.
         columns:
           - name: employee_id
             data_tests:
@@ -34,7 +37,7 @@ sources:
       - name: orders
         description: >
           Lists and contains informations, such as freight, dates, foreign keys and shipment details, 
-          the orders made by the customers.
+          of the orders made by the customers.
         columns:
           - name: order_id
             data_tests:
@@ -42,7 +45,7 @@ sources:
               - not_null
       - name: order_details
         description: >
-          List and describes the details, such as unit_price, discount and quantity, about the items of 
+          List and describes the details, such as unit_price, discount and quantity, of the items of 
           each order made by the customers.
         data_tests:
           - dbt_utils.unique_combination_of_columns:
@@ -50,14 +53,14 @@ sources:
                 - order_id
                 - product_id
       - name: products
-        description: List and describes informations, such as units in stock, unit price and name, about the products.
+        description: List and describes informations, such as units in stock, unit price and name, of the products.
         columns:
           - name: product_id
             data_tests:
               - unique
               - not_null
       - name: shippers
-        description: Lists and describes informations, such as name, about the shippers associated with the order.
+        description: Lists and describes informations, such as name and phone, of the shippers associated with the order.
         columns:
           - name: shipper_id
             data_tests:
@@ -65,7 +68,7 @@ sources:
               - not_null
       - name: suppliers
         description: >
-          Lists and describes informations, such as name, address and region, about the suppliers of the 
+          Lists and describes informations, such as name, address and region, of the suppliers of the 
           products.
         columns:
           - name: supplier_id
