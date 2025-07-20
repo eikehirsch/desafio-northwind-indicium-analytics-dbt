@@ -10,7 +10,7 @@ models:
           - not_null
 
       - name: shipper_name
-        description: Name of the shipper company.
+        description: Name of the shipping company responsible for delivering the order.
 
       - name: shipper_phone
-        description: Phone number of the shipper company.
+        description: Phone number of the shipping company responsible for delivering the order.

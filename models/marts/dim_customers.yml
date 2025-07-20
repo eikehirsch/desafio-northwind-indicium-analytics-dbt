@@ -1,8 +1,8 @@
 models:
   - name: dim_customers
     description: >
-      A dimension table that lists and contains information about company customers, including
-      details such as the name and address of the customer company and the name of the person representing the customer company.
+      A dimension table that contains information about customer companies, including the company name, address, 
+      and the name of the contact person representing the customer company.
     columns:
       - name: customer_pk
         description: Unique identifier for each customer.
